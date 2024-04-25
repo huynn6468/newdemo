@@ -4,6 +4,7 @@ public class Word implements Comparable<Word> {
 
     private String WordTarget;
     private String WordExplain;
+    private String Hehe;
 
     public Word() {
     }
