@@ -26,20 +26,21 @@ public class DictionaryCommandline extends Dictionary {
         String target = sc.nextLine();
         System.out.println(dict.dictionaryLookup(target));
         System.out.println("\n");
-        dict.dictionaryEdit();
+        dict.editWord();
         System.out.println("\n");
-        dict.exportToFile();
+        dict.dictionaryExportToFile();
         System.out.println("\n");
     }
-    public int dictionarySearcher(String wordToSearch) {
+
+    public int dictionarySearcher(DictionaryManagement dict) {
         Collections.sort(Dictionary.wordArray, Comparator.comparing(Word::getWordTarget));
         int l = 0;
         int r = Dictionary.wordArray.size() - 1;
         while (r >= l) {
             int mid = l + (r - l) / 2;
-            if (Dictionary.wordArray.get(mid).getWordTarget().compareTo(wordToSearch) == 0) {
+            if (Dictionary.wordArray.get(mid).getWordTarget().compareTo(DictionaryManagement dict) == 0) {
                 return mid;
-            } else if (Dictionary.wordArray.get(mid).getWordTarget().compareTo(wordToSearch) >= 0) {
+            } else if (Dictionary.wordArray.get(mid).getWordTarget().compareTo(DictionaryManagement dict) >= 0) {
                 r = mid - 1;
             } else {
                 l = mid + 1;
