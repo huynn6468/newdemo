@@ -13,11 +13,10 @@ public class DictionaryManagement extends Dictionary {
     public DictionaryManagement() {
         super();
     }
-    private Scanner sc = new Scanner(System.in);
-    private Map<String, String> dictionary;
+    private final Scanner scanner = new Scanner(System.in);
 
     public void DictionaryManament() {
-        dictionary = new HashMap<>();
+        Map<String, String> dictionary = new HashMap<>();
     }
     public void insertFromCommandline() {
         Scanner scanner = new Scanner(System.in);
@@ -38,12 +37,12 @@ public class DictionaryManagement extends Dictionary {
 
     public int dictionarySearcherBinary (String target) {
         int l= 0;
-        int r = this.wordArray.size() -1;
+        int r = wordArray.size() -1;
         while (l <= r) {
             int mid = r + (l - r) /2;
-            if (target.compareTo(this.wordArray.get(mid).getWordTarget()) == 0) {
+            if (target.compareTo(wordArray.get(mid).getWordTarget()) == 0) {
                 return mid;
-            } else if (target.compareTo(this.wordArray.get(mid).getWordTarget()) > 0) {
+            } else if (target.compareTo(wordArray.get(mid).getWordTarget()) > 0) {
                 l = mid + 1;
             } else {
                 r = mid - 1;
@@ -54,7 +53,7 @@ public class DictionaryManagement extends Dictionary {
 
     public String dictionaryLookup(String target) {
         if (target != null) {
-            return this.wordArray.get(dictionarySearcherBinary(target)).getWordExplain();
+            return wordArray.get(dictionarySearcherBinary(target)).getWordExplain();
         } else {
             return "";
         }
@@ -77,10 +76,10 @@ public class DictionaryManagement extends Dictionary {
                 content.trim();
                 String[] postSplit = content.split("\\t");
                 Word w = new Word(postSplit[0], postSplit[1]);
-                this.wordArray.add(w);
+                wordArray.add(w);
             }
                 fileReader.close();
-                Collections.sort(this.wordArray);
+                Collections.sort(wordArray);
             } catch (FileNotFoundException e) {
                 System.out.println("Lỗi, không tìm thấy file.");
             }
@@ -90,24 +89,24 @@ public class DictionaryManagement extends Dictionary {
         System.out.println("Chọn thao tác: ");
         System.out.println("1.Xóa từ");
         System.out.println("2.Thêm từ");
-        int key = sc.nextInt();
-        sc.nextLine();
+        int key = scanner.nextInt();
+        scanner.nextLine();
         if (key == 1) {
             System.out.println("Nhập từ cần xóa: ");
-            String dellWord = sc.next();
+            String dellWord = scanner.next();
             if (this.dictionarySearcherBinary(dellWord) != -1) {
-                this.wordArray.remove(this.dictionarySearcherBinary(dellWord));
+                wordArray.remove(this.dictionarySearcherBinary(dellWord));
             } else {
                 System.out.println("Không tìm thấy từ cần xóa");
             }
         } else if (key == 2) {
             System.out.println("Nhập từ cần sửa: ");
-            String editWord = sc.nextLine();
+            String editWord = scanner.nextLine();
             if (this.dictionarySearcherBinary(editWord) != -1) {
                 System.out.println("Sửa lại nghĩa: ");
-                String exWord = sc.nextLine();
+                String exWord = scanner.nextLine();
                 System.out.println("Thêm từ thành công");
-                this.wordArray.get(dictionarySearcherBinary(editWord)).setWordExplain(exWord);
+                wordArray.get(dictionarySearcherBinary(editWord)).setWordExplain(exWord);
             } else {
                 System.out.println("Không tìm thấy từ");
             }
