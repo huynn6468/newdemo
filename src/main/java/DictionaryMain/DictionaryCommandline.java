@@ -29,23 +29,23 @@ public class DictionaryCommandline extends Dictionary {
         System.out.println("\n");
     }
 
-    public int dictionarySearcher(DictionaryManagement dict, String target) {
-        Collections.sort(Dictionary.wordArray, Comparator.comparing(Word::getWordTarget));
+    public static Word dictionarySearcher(DictionaryManagement dict, String target) {
+        Collections.sort(Dictionary.wordArray, Comparator.comparing(Word::getWordTarget, String.CASE_INSENSITIVE_ORDER));
         int l = 0;
         int r = Dictionary.wordArray.size() - 1;
         while (r >= l) {
             int mid = l + (r - l) / 2;
             String wordTarget = Dictionary.wordArray.get(mid).getWordTarget();
-            int comparisonResult = target.compareTo(wordTarget);
+            int comparisonResult = target.compareToIgnoreCase(wordTarget);
             if (comparisonResult == 0) {
-                return mid;
+                return Dictionary.wordArray.get(mid);
             } else if (comparisonResult > 0) {
-                r = mid - 1;
+                r = mid + 1;
             } else {
-                l = mid + 1;
+                l = mid - 1;
             }
         }
-        return -1;
+        return null;
     }
 
     public void dictionarySearcher(DictionaryManagement dict) {
