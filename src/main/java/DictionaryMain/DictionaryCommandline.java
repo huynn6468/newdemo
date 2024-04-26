@@ -5,22 +5,19 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class DictionaryCommandline extends Dictionary {
-    public DictionaryCommandline() {
-        super();
-    }
     private static Scanner sc = new Scanner(System.in);
 
     public static void dictionaryBasic(DictionaryManagement dict) {
         dict.insertFromCommandline();
         System.out.println("\n");
-        dict.showAllWord();
+        dict.showAllWords();
         System.out.println("\n");
     }
 
     public static void dictionaryAdvanced(DictionaryManagement dict) {
         dict.insertFromFile();
         System.out.println("\n");
-        dict.showAllWord();
+        dict.showAllWords();
         System.out.println("\n");
         System.out.println("Nhập từ tiếng Anh: ");
         String target = sc.nextLine();
@@ -32,20 +29,25 @@ public class DictionaryCommandline extends Dictionary {
         System.out.println("\n");
     }
 
-    public int dictionarySearcher(DictionaryManagement dict) {
+    public int dictionarySearcher(DictionaryManagement dict, String target) {
         Collections.sort(Dictionary.wordArray, Comparator.comparing(Word::getWordTarget));
         int l = 0;
         int r = Dictionary.wordArray.size() - 1;
         while (r >= l) {
             int mid = l + (r - l) / 2;
-            if (Dictionary.wordArray.get(mid).getWordTarget().compareTo(DictionaryManagement dict) == 0) {
+            String wordTarget = Dictionary.wordArray.get(mid).getWordTarget();
+            int comparisonResult = target.compareTo(wordTarget);
+            if (comparisonResult == 0) {
                 return mid;
-            } else if (Dictionary.wordArray.get(mid).getWordTarget().compareTo(DictionaryManagement dict) >= 0) {
+            } else if (comparisonResult > 0) {
                 r = mid - 1;
             } else {
                 l = mid + 1;
             }
         }
         return -1;
+    }
+
+    public void dictionarySearcher(DictionaryManagement dict) {
     }
 }

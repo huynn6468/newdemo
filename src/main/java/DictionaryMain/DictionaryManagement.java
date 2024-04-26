@@ -59,12 +59,13 @@ public class DictionaryManagement extends Dictionary {
             return "";
         }
     }
-    public void showAllWord() {
-        int n = 1;
-        System.out.format("%-5s %-20s %-20s\n", "No", "| English", "| Vietnamese");
-        for (Word w : Dictionary.wordArray) {
-            System.out.format("%-5s %-20s %-20s\n", n, w.getWordTarget(), w.getWordExplain());
-            n++;
+    public void showAllWords() {
+        System.out.println("Danh sách tất cả các từ đang có trong từ điển: ");
+        System.out.println("No  | English           | Vietnamese");
+
+        for (int i = 0; i < Dictionary.wordArray.size(); i++) {
+            Word word = Dictionary.wordArray.get(i);
+            System.out.printf("%-4d| %-18s| %s%n", (i + 1), word.getWordTarget(), word.getWordExplain());
         }
     }
     public void insertFromFile() {
@@ -84,6 +85,7 @@ public class DictionaryManagement extends Dictionary {
                 System.out.println("Lỗi, không tìm thấy file.");
             }
         }
+
     public void editWord() {
         System.out.println("Chọn thao tác: ");
         System.out.println("1.Xóa từ");
