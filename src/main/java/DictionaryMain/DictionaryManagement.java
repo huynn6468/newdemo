@@ -13,7 +13,7 @@ public class DictionaryManagement extends Dictionary {
     public DictionaryManagement() {
         super();
     }
-    private Scanner sc = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public void DictionaryManament() {
         Map<String, String> dictionary = new HashMap<>();
@@ -89,11 +89,11 @@ public class DictionaryManagement extends Dictionary {
         System.out.println("Chọn thao tác: ");
         System.out.println("1.Xóa từ");
         System.out.println("2.Thêm từ");
-        int key = sc.nextInt();
-        sc.nextLine();
+        int key = scanner.nextInt();
+        scanner.nextLine();
         if (key == 1) {
             System.out.println("Nhập từ cần xóa: ");
-            String dellWord = sc.next();
+            String dellWord = scanner.next();
             if (this.dictionarySearcherBinary(dellWord) != -1) {
                 wordArray.remove(this.dictionarySearcherBinary(dellWord));
             } else {
@@ -101,10 +101,10 @@ public class DictionaryManagement extends Dictionary {
             }
         } else if (key == 2) {
             System.out.println("Nhập từ cần sửa: ");
-            String editWord = sc.nextLine();
+            String editWord = scanner.nextLine();
             if (this.dictionarySearcherBinary(editWord) != -1) {
                 System.out.println("Sửa lại nghĩa: ");
-                String exWord = sc.nextLine();
+                String exWord = scanner.nextLine();
                 System.out.println("Thêm từ thành công");
                 wordArray.get(dictionarySearcherBinary(editWord)).setWordExplain(exWord);
             } else {

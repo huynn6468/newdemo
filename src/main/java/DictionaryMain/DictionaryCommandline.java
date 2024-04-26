@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class DictionaryCommandline extends Dictionary {
     private static final Scanner sc = new Scanner(System.in);
+    private DictionaryManagement dict;
+    private String target;
 
     public static void dictionaryBasic(DictionaryManagement dict) {
         dict.insertFromCommandline();
