@@ -8,7 +8,7 @@ public abstract class Dictionary {
         wordArray = new ArrayList<>();
     }
     public ArrayList<Word> getWordArray() {
-        return this.wordArray;
+        return wordArray;
     }
 
 }

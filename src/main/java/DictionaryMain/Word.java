@@ -6,6 +6,8 @@ public class Word implements Comparable<Word> {
     private String WordExplain;
 
     public Word() {
+        WordTarget = "null";
+        WordExplain = "null";
     }
     public Word(String wordTarget) {
         this.WordTarget = WordTarget;

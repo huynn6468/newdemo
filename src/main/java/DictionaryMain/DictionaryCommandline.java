@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 public class DictionaryCommandline extends Dictionary {
-    private static Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
 
     public static void dictionaryBasic(DictionaryManagement dict) {
         dict.insertFromCommandline();
@@ -30,7 +30,7 @@ public class DictionaryCommandline extends Dictionary {
     }
 
     public int dictionarySearcher(DictionaryManagement dict, String target) {
-        Collections.sort(Dictionary.wordArray, Comparator.comparing(Word::getWordTarget));
+        Dictionary.wordArray.sort(Comparator.comparing(Word::getWordTarget));
         int l = 0;
         int r = Dictionary.wordArray.size() - 1;
         while (r >= l) {
