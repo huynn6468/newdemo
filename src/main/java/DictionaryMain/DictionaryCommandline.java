@@ -1,7 +1,5 @@
 package DictionaryMain;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class DictionaryCommandline extends Dictionary {
@@ -29,25 +27,19 @@ public class DictionaryCommandline extends Dictionary {
         System.out.println("\n");
     }
 
-    public static Word dictionarySearcher(DictionaryManagement dict, String target) {
-        Collections.sort(Dictionary.wordArray, Comparator.comparing(Word::getWordTarget, String.CASE_INSENSITIVE_ORDER));
-        int l = 0;
-        int r = Dictionary.wordArray.size() - 1;
-        while (r >= l) {
-            int mid = l + (r - l) / 2;
-            String wordTarget = Dictionary.wordArray.get(mid).getWordTarget();
-            int comparisonResult = target.compareToIgnoreCase(wordTarget);
-            if (comparisonResult == 0) {
-                return Dictionary.wordArray.get(mid);
-            } else if (comparisonResult > 0) {
-                r = mid + 1;
-            } else {
-                l = mid - 1;
+    public static void dictionarySearcher(DictionaryManagement dict) {
+        System.out.print("Nhập từ muốn tìm: ");
+        String search = sc.nextLine();
+        System.out.println("English           | Vietnamese");
+        int i = 0;
+        while (i < dict.getWordArray().size()) {
+            if (dict.getWordArray().get(i).getWordTarget().contains(search)) {
+                System.out.println(dict.getWordArray().get(i).getWordTarget() + "           | "
+                        + dict.getWordArray().get(i).getWordExplain());
             }
+            i++;
         }
-        return null;
-    }
-
-    public void dictionarySearcher(DictionaryManagement dict) {
+        sc.close();
     }
 }
+

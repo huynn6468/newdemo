@@ -15,7 +15,7 @@ public class DictionaryManagement extends Dictionary {
     }
     private final Scanner scanner = new Scanner(System.in);
 
-    public void DictionaryManament() {
+    public void DictionaryManagement() {
         Map<String, String> dictionary = new HashMap<>();
     }
     public void insertFromCommandline() {
@@ -33,6 +33,7 @@ public class DictionaryManagement extends Dictionary {
             newWord.setWordExplain(nghiatu);
             Dictionary.wordArray.add(newWord);
         }
+        Collections.sort(this.wordArray);
     }
 
     public int dictionarySearcherBinary (String target) {
@@ -64,26 +65,40 @@ public class DictionaryManagement extends Dictionary {
 
         for (int i = 0; i < Dictionary.wordArray.size(); i++) {
             Word word = Dictionary.wordArray.get(i);
-            System.out.printf("%-4d| %-18s| %s%n", (i + 1), word.getWordTarget(), word.getWordExplain());
+            System.out.println((i + 1) + "  | " + this.wordArray.get(i).getWordTarget() + "           | "
+                    + this.wordArray.get(i).getWordExplain());
         }
     }
+
     public void insertFromFile() {
         try {
-            File wordFile = new File("src/main/resources/File/dictionary.txt");
+            File wordFile = new File("src/main/resources/txt/dictionary.txt");
             Scanner fileReader = new Scanner(wordFile);
+            String English = new String();
+            String Vietnamese = new String();
+            StringBuilder line = new StringBuilder();
+            String temp = "";
             while (fileReader.hasNextLine()) {
-                String content = fileReader.nextLine();
-                content.trim();
-                String[] postSplit = content.split("\\t");
-                Word w = new Word(postSplit[0], postSplit[1]);
-                wordArray.add(w);
+                temp = fileReader.nextLine() + "\n";
+                line.append(temp);
             }
-                fileReader.close();
-                Collections.sort(wordArray);
-            } catch (FileNotFoundException e) {
-                System.out.println("Lỗi, không tìm thấy file.");
+            String[] eachWord = line.toString().split("@");
+            for (int i = 1; i < eachWord.length; i++) {
+                if (eachWord[i].contains("/")) {
+                    int k = eachWord[i].indexOf("/");
+                    English = eachWord[i].substring(0, k - 1);
+                    Vietnamese = eachWord[i].substring(k, eachWord[i].length() - 1);
+                    Word w = new Word(English, Vietnamese);
+                    this.wordArray.add(w);
+                }
             }
+            fileReader.close();
+            Collections.sort(this.wordArray);
+        } catch (FileNotFoundException e) {
+            System.out.println("Lỗi! Không tìm thấy file.");
+            e.printStackTrace();
         }
+    }
 
     public void editWord() {
         System.out.println("Chọn thao tác: ");
@@ -97,7 +112,7 @@ public class DictionaryManagement extends Dictionary {
             if (this.dictionarySearcherBinary(dellWord) != -1) {
                 wordArray.remove(this.dictionarySearcherBinary(dellWord));
             } else {
-                System.out.println("Không tìm thấy từ cần xóa");
+                System.out.println("Không tìm thấy từ cần xóa.");
             }
         } else if (key == 2) {
             System.out.println("Nhập từ cần sửa: ");
@@ -105,23 +120,23 @@ public class DictionaryManagement extends Dictionary {
             if (this.dictionarySearcherBinary(editWord) != -1) {
                 System.out.println("Sửa lại nghĩa: ");
                 String exWord = scanner.nextLine();
-                System.out.println("Thêm từ thành công");
+                System.out.println("Thêm từ thành công.");
                 wordArray.get(dictionarySearcherBinary(editWord)).setWordExplain(exWord);
             } else {
-                System.out.println("Không tìm thấy từ");
+                System.out.println("Không tìm thấy từ!");
             }
         }
     }
 
     public void dictionaryExportToFile() {
-        Path filePath = Path.of("src/main/resources/File/dictionary.txt");
+        Path filePath = Path.of("src/main/resources/txt/dictionary.txt");
         try (BufferedWriter writer = Files.newBufferedWriter(filePath, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
             for (int i = 0; i < wordArray.size(); i++) {
                 writer.write(wordArray.get(i).getWordTarget() + "    " + wordArray.get(i).getWordExplain());
                 writer.newLine();
             }
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println("Đã xảy ra lỗi!");
             e.printStackTrace();
         }
     }

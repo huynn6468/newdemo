@@ -10,6 +10,5 @@ public abstract class Dictionary {
     public ArrayList<Word> getWordArray() {
         return wordArray;
     }
-
 }
 
