@@ -1,7 +1,7 @@
 package DictionaryMain;
 import java.util.Collections;
 
-public class Test {
+public class 2Test {
     public static void main(String[] args) {
         DictionaryManagement dict = new DictionaryManagement();
         DictionaryCommandline DictionaryCommandLine = new DictionaryCommandline();
