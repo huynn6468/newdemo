@@ -72,7 +72,7 @@ public class DictionaryManagement extends Dictionary {
 
     public void insertFromFile() {
         try {
-            File wordFile = new File("src/main/resources/txt/dictionary.txt");
+            File wordFile = new File("src/main/resources/File/dictionary.txt");
             Scanner fileReader = new Scanner(wordFile);
             String English = new String();
             String Vietnamese = new String();
@@ -104,24 +104,43 @@ public class DictionaryManagement extends Dictionary {
         System.out.println("Chọn thao tác: ");
         System.out.println("1.Xóa từ");
         System.out.println("2.Thêm từ");
+        System.out.println("3.Sửa từ");
         int key = scanner.nextInt();
         scanner.nextLine();
         if (key == 1) {
             System.out.println("Nhập từ cần xóa: ");
             String dellWord = scanner.next();
-            if (this.dictionarySearcherBinary(dellWord) != -1) {
-                wordArray.remove(this.dictionarySearcherBinary(dellWord));
+            int index = dictionarySearcherBinary(dellWord);
+            if (index != -1) {
+                wordArray.remove(index);
+                System.out.println("Xóa từ thành công.");
             } else {
                 System.out.println("Không tìm thấy từ cần xóa.");
             }
         } else if (key == 2) {
-            System.out.println("Nhập từ cần sửa: ");
+            System.out.println("Nhập từ cần thêm: ");
+            String newWord = scanner.nextLine();
             String editWord = scanner.nextLine();
-            if (this.dictionarySearcherBinary(editWord) != -1) {
-                System.out.println("Sửa lại nghĩa: ");
+            int index = dictionarySearcherBinary(newWord);
+            if (index != -1) {
+                System.out.println("Nhập nghĩa của từ: ");
                 String exWord = scanner.nextLine();
+                wordArray.get(index).setWordExplain(exWord);
                 System.out.println("Thêm từ thành công.");
-                wordArray.get(dictionarySearcherBinary(editWord)).setWordExplain(exWord);
+                this.wordArray.get(dictionarySearcherBinary(editWord)).setWordExplain(exWord);
+            } else {
+                System.out.println("Từ đã tồn tại.");
+            }
+        } else if (key == 3) {
+            System.out.print("Nhập từ muốn sửa: ");
+            String editWord = scanner.nextLine();
+            int index = dictionarySearcherBinary(editWord);
+            if (index == -1) {
+                System.out.print("Nhập nghĩa của từ: ");
+                String exWord = scanner.nextLine();
+                wordArray.get(index).setWordExplain(exWord);
+                System.out.println("Sửa từ thành công.");
+                this.wordArray.get(dictionarySearcherBinary(editWord)).setWordExplain(exWord);
             } else {
                 System.out.println("Không tìm thấy từ!");
             }
@@ -129,7 +148,7 @@ public class DictionaryManagement extends Dictionary {
     }
 
     public void dictionaryExportToFile() {
-        Path filePath = Path.of("src/main/resources/txt/dictionary.txt");
+        Path filePath = Path.of("src/main/resources/File/dictionary.txt");
         try (BufferedWriter writer = Files.newBufferedWriter(filePath, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
             for (int i = 0; i < wordArray.size(); i++) {
                 writer.write(wordArray.get(i).getWordTarget() + "    " + wordArray.get(i).getWordExplain());
