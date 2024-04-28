@@ -1,12 +1,14 @@
 package DictionaryMain;
+import java.util.ArrayList;
+public class Test {
 
-public class 2Test {
     public static void main(String[] args) {
         DictionaryManagement dict = new DictionaryManagement();
-
-        DictionaryCommandLine.dictionaryBasic(dict);
-        DictionaryCommandLine.dictionaryAdvanced(dict);
-        DictionaryCommandLine.dictionarySearcher(dict);
+        DictionaryCommandline DictionaryCommandline = new DictionaryCommandline();
+        DictionaryCommandline = null;
+        DictionaryMain.DictionaryCommandline.dictionaryBasic(dict);
+        DictionaryCommandline.dictionaryAdvanced(dict);
+        DictionaryCommandline.dictionarySearcher(dict);
 
     }
 }

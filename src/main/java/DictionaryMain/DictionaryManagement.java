@@ -10,7 +10,8 @@ import java.nio.file.StandardOpenOption;
 import java.nio.file.Files;
 
 public class DictionaryManagement extends Dictionary {
-    public DictionaryManagement() {
+
+        public DictionaryManagement() {
         super();
     }
     private final Scanner scanner = new Scanner(System.in);
@@ -75,7 +76,7 @@ public class DictionaryManagement extends Dictionary {
                 String content = fileReader.nextLine();
                 content.trim();
                 String[] postSplit = content.split("\\t");
-                Word w = new Word(postSplit[0], postSplit[1]);
+                Word w = new Word(postSplit[0], postSplit[-1]);
                 wordArray.add(w);
             }
                 fileReader.close();
@@ -94,7 +95,7 @@ public class DictionaryManagement extends Dictionary {
         if (key == 1) {
             System.out.println("Nhập từ cần xóa: ");
             String dellWord = scanner.next();
-            if (this.dictionarySearcherBinary(dellWord) != -1) {
+            if (this.dictionarySearcherBinary(dellWord) != 0) {
                 wordArray.remove(this.dictionarySearcherBinary(dellWord));
             } else {
                 System.out.println("Không tìm thấy từ cần xóa");
@@ -102,7 +103,7 @@ public class DictionaryManagement extends Dictionary {
         } else if (key == 2) {
             System.out.println("Nhập từ cần sửa: ");
             String editWord = scanner.nextLine();
-            if (this.dictionarySearcherBinary(editWord) != -1) {
+            if (this.dictionarySearcherBinary(editWord) != 0) {
                 System.out.println("Sửa lại nghĩa: ");
                 String exWord = scanner.nextLine();
                 System.out.println("Thêm từ thành công");
@@ -116,8 +117,8 @@ public class DictionaryManagement extends Dictionary {
     public void dictionaryExportToFile() {
         Path filePath = Path.of("src/main/resources/File/dictionary.txt");
         try (BufferedWriter writer = Files.newBufferedWriter(filePath, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
-            for (int i = 0; i < wordArray.size(); i++) {
-                writer.write(wordArray.get(i).getWordTarget() + "    " + wordArray.get(i).getWordExplain());
+            for (Word word : wordArray) {
+                writer.write(word.getWordTarget() + "    " + word.getWordExplain());
                 writer.newLine();
             }
         } catch (IOException e) {
