@@ -12,7 +12,8 @@ public class DictionaryCommandline extends Dictionary {
         System.out.println("\n");
     }
 
-    public static void dictionaryAdvanced(DictionaryManagement dict) {
+    public void dictionaryAdvanced(DictionaryManagement dict) {
+
         dict.insertFromFile();
         System.out.println("\n");
         dict.showAllWords();
@@ -41,5 +42,6 @@ public class DictionaryCommandline extends Dictionary {
         }
         sc.close();
     }
+
 }
 
