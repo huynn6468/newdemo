@@ -3,7 +3,7 @@ package DictionaryMain;
 import java.util.Scanner;
 
 public class DictionaryCommandline extends Dictionary {
-    private static Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
 
     public static void dictionaryBasic(DictionaryManagement dict) {
         dict.insertFromCommandline();
@@ -31,10 +31,12 @@ public class DictionaryCommandline extends Dictionary {
     public static void dictionarySearcher(DictionaryManagement dict) {
         System.out.print("Nhập từ muốn tìm: ");
         String search = sc.nextLine();
-        System.out.println("English           | Vietnamese");
         int i = 0;
         while (i < dict.getWordArray().size()) {
-            if (dict.getWordArray().get(i).getWordTarget().contains(search)) {
+            if (!dict.getWordArray().get(i).getWordTarget().contains(search)) {
+                System.out.println("Không tìm thấy từ !");
+            } else {
+                System.out.println("English           | Vietnamese");
                 System.out.println(dict.getWordArray().get(i).getWordTarget() + "           | "
                         + dict.getWordArray().get(i).getWordExplain());
             }

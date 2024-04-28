@@ -61,7 +61,7 @@ public class DictionaryManagement extends Dictionary {
     }
     public void showAllWords() {
         System.out.println("Danh sách tất cả các từ đang có trong từ điển: ");
-        System.out.println("No  | English           | Vietnamese");
+        System.out.println("No  | English          | Vietnamese");
 
         for (int i = 0; i < Dictionary.wordArray.size(); i++) {
             Word word = Dictionary.wordArray.get(i);
