@@ -10,8 +10,7 @@ import java.nio.file.StandardOpenOption;
 import java.nio.file.Files;
 
 public class DictionaryManagement extends Dictionary {
-
-        public DictionaryManagement() {
+    public DictionaryManagement() {
         super();
     }
     private final Scanner scanner = new Scanner(System.in);
@@ -80,16 +79,8 @@ public class DictionaryManagement extends Dictionary {
             StringBuilder line = new StringBuilder();
             String temp = "";
             while (fileReader.hasNextLine()) {
-
                 temp = fileReader.nextLine() + "\n";
                 line.append(temp);
-
-                String content = fileReader.nextLine();
-                content.trim();
-                String[] postSplit = content.split("\\t");
-                Word w = new Word(postSplit[0], postSplit[-1]);
-                wordArray.add(w);
-
             }
             String[] eachWord = line.toString().split("@");
             for (int i = 1; i < eachWord.length; i++) {
@@ -123,9 +114,6 @@ public class DictionaryManagement extends Dictionary {
             if (index != -1) {
                 wordArray.remove(index);
                 System.out.println("Xóa từ thành công.");
-
-            if (this.dictionarySearcherBinary(dellWord) != 0) {
-                wordArray.remove(this.dictionarySearcherBinary(dellWord));
             } else {
                 System.out.println("Không tìm thấy từ cần xóa.");
             }
@@ -136,8 +124,6 @@ public class DictionaryManagement extends Dictionary {
             int index = dictionarySearcherBinary(newWord);
             if (index != -1) {
                 System.out.println("Nhập nghĩa của từ: ");
-            if (this.dictionarySearcherBinary(editWord) != 0) {
-                System.out.println("Sửa lại nghĩa: ");
                 String exWord = scanner.nextLine();
                 wordArray.get(index).setWordExplain(exWord);
                 System.out.println("Thêm từ thành công.");
@@ -164,8 +150,8 @@ public class DictionaryManagement extends Dictionary {
     public void dictionaryExportToFile() {
         Path filePath = Path.of("src/main/resources/File/dictionary.txt");
         try (BufferedWriter writer = Files.newBufferedWriter(filePath, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
-            for (Word word : wordArray) {
-                writer.write(word.getWordTarget() + "    " + word.getWordExplain());
+            for (int i = 0; i < wordArray.size(); i++) {
+                writer.write(wordArray.get(i).getWordTarget() + "    " + wordArray.get(i).getWordExplain());
                 writer.newLine();
             }
         } catch (IOException e) {
