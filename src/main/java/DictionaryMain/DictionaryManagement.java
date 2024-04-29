@@ -54,7 +54,8 @@ public class DictionaryManagement extends Dictionary {
 
     public String dictionaryLookup(String target) {
         if (target != null) {
-            return wordArray.get(dictionarySearcherBinary(target)).getWordExplain();
+            String wordExplain = wordArray.get(dictionarySearcherBinary(target)).getWordExplain();
+            return wordExplain;
         } else {
             return "";
         }
@@ -63,7 +64,7 @@ public class DictionaryManagement extends Dictionary {
         System.out.println("Danh sách tất cả các từ đang có trong từ điển: ");
         System.out.println("No  | English          | Vietnamese");
 
-        for (int i = 0; i < Dictionary.wordArray.size(); i++) {
+        aa: for (int i = 0; i < Dictionary.wordArray.size(); i++) {
             Word word = Dictionary.wordArray.get(i);
             System.out.println((i + 1) + "  | " + this.wordArray.get(i).getWordTarget() + "           | "
                     + this.wordArray.get(i).getWordExplain());
@@ -92,7 +93,7 @@ public class DictionaryManagement extends Dictionary {
                     this.wordArray.add(w);
                 }
             }
-            fileReader.close();
+
             Collections.sort(this.wordArray);
         } catch (FileNotFoundException e) {
             System.out.println("Lỗi! Không tìm thấy file.");
@@ -147,7 +148,28 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
-    public void dictionaryExportToFile() {
+    /**    private final static String FILE_URL = "D://oop//noteenglíh.txt";
+     *
+    public void addFile() {
+        try {
+            File file = new File("src/main/resources/File/dictionary.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file,true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(FILE_URL);
+            bw.newLine();
+            bw.close();
+        } catch ( IOException e) {
+            System.out.println("Exception occurred:");
+            e.printStackTrace();
+        }
+    }
+*/
+
+    public static void dictionaryExportToFile() {
+
         Path filePath = Path.of("src/main/resources/File/dictionary.txt");
         try (BufferedWriter writer = Files.newBufferedWriter(filePath, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
             for (int i = 0; i < wordArray.size(); i++) {
@@ -159,4 +181,19 @@ public class DictionaryManagement extends Dictionary {
             e.printStackTrace();
         }
     }
+/**
+    private final static String FILE_URL = "D://oop//noteenglíh.txt";
+
+    public static void main(String[] args) throws IOException {
+        File file = new File(FILE_URL);
+        InputStream inputStream = new FileInputStream(file);
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        BufferedReader reader = new BufferedReader(inputStreamReader);
+
+        String line = "";
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
+    }
+     */
 }

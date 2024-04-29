@@ -20,7 +20,7 @@ public class Word implements Comparable<Word> {
     }
 
     public void setWordTarget(String wordTarget) {
-        WordTarget = wordTarget;
+        this.WordTarget = wordTarget;
     }
 
     public String getWordExplain() {
@@ -28,7 +28,7 @@ public class Word implements Comparable<Word> {
     }
 
     public void setWordExplain(String wordExplain) {
-        WordExplain = wordExplain;
+        this.WordExplain = wordExplain;
     }
 
     public int compareTo(Word other) {
