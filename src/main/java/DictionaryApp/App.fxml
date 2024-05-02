@@ -1,12 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-    </AnchorPane>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="409.0821533203125" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <ImageView fitHeight="453.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@Assets/Path%2011.png" />
+               </image>
+            </ImageView>
+         </left>
+      </BorderPane>
+      <ImageView fitHeight="26.0" fitWidth="69.0" layoutX="13.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/Meolish-logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="104.0" layoutX="11.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/Good%20Morning,%20Meo!%20Have%20a%20nice%20day!.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="23.0" fitWidth="97.0" layoutX="158.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/blue-logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="273.0" layoutX="158.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Assets/search-bar.png" />
+         </image>
+      </ImageView>
+      <Button accessibleRole="IMAGE_VIEW" alignment="TOP_LEFT" layoutX="20.0" layoutY="99.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: 0;" text="Dashboard" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/Dashboard-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Montserrat Medium" size="14.0" />
+         </font>
+      </Button>
+      <Button accessibleRole="IMAGE_VIEW" alignment="TOP_LEFT" layoutX="20.0" layoutY="144.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: 0;" text="Search" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/search-icon-white.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Montserrat Medium" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
