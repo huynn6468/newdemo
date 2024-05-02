@@ -1,4 +1,5 @@
 package DictionaryMain;
+import java.util.Collections;
 
 public class Test {
     public static void main(String[] args) {
@@ -7,7 +8,6 @@ public class Test {
         DictionaryCommandLine.dictionaryBasic(dict);
         DictionaryCommandLine.dictionaryAdvanced(dict);
         DictionaryCommandLine.dictionarySearcher(dict);
-
     }
 }
 
